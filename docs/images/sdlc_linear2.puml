@@ -1,0 +1,80 @@
+@startuml
+title SLDC, Software engineering roles & Cursor rules interaction
+left to right direction
+
+skinparam title {
+  FontSize 18
+}
+
+skinparam rectangle {
+  FontColor white
+  FontSize 12
+  FontStyle bold
+  BorderColor black
+  BorderThickness 2
+}
+
+skinparam arrow {
+  Color black
+  Thickness 2
+}
+
+skinparam rectangle<<cursor>> {
+  FontColor white
+}
+
+' Actors row
+actor "Product Owner" as po
+actor "Business Analyst" as ba
+actor "Enterprise Architect" as ea
+actor "Solution Architect" as sa
+actor "Technical Lead" as tl
+actor "Technical Lead" as tl2
+actor "Senior Software Engineer" as sse
+actor "Software Engineer" as se
+rectangle "Cursor AI" as cursor <<cursor>> #000000
+note bottom of cursor : Using Cursor rules for Agile \nto define Epic, Feature, User Stories & Acceptance Criteria
+rectangle "Cursor AI" as cursor2 <<cursor>> #000000
+note bottom of cursor2 : Using Cursor rules for Agile \nto define ADRs, UML diagrams & C4 models diagrams.
+rectangle "Cursor AI" as cursor3 <<cursor>> #000000
+note bottom of cursor3 : Using Cursor rules for Java \nto improve/refactor the code
+
+' SDLC phases in strict order
+rectangle "1. PLANNING\n\n• Requirements gathering\n• Project scope definition\n• Resource allocation\n• Timeline planning" as planning #C41E3A
+rectangle "2. ANALYSIS\n\n• System analysis\n• Feasibility study\n• Requirements analysis\n• Risk assessment" as analysis #2E3B6B
+rectangle "3. DESIGN\n\n• System architecture\n• UI/UX design\n• Database design\n• Technical specifications" as design #3498DB
+rectangle "4. IMPLEMENTATION\n\n• Coding\n• Development\n• Code reviews\n• Version control" as implementation #17A2B8
+rectangle "5. TESTING & INTEGRATION\n\n• Unit testing\n• Integration testing\n• System testing\n• User acceptance testing" as testing #F39C12
+rectangle "6. MAINTENANCE\n\n• Bug fixes\n• Updates\n• Performance monitoring\n• User support" as maintenance #E67E22
+
+' Process flow
+planning --> analysis
+analysis --> design
+design --> implementation
+implementation --> testing
+testing --> maintenance
+
+' Actor connections
+po --> planning
+ba --> planning
+ea --> analysis
+sa --> analysis
+sa --> design
+tl --> design
+tl2 --> implementation
+sse --> implementation
+sse --> testing
+sse --> maintenance
+se --> implementation
+se --> testing
+se --> maintenance
+cursor <-- po
+cursor <-- ba
+cursor2 <-- ea
+cursor2 <-- sa
+cursor2 <-- tl
+cursor3 <-- tl2
+cursor3 <-- sse
+cursor3 <-- se
+
+@enduml
